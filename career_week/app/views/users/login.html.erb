@@ -1,0 +1,10 @@
+<div id="login">
+    <form action="/enter" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        Email: <input type="text" name="email"> <br>
+        Password: <input type="password" name="password"> <br>
+        <input type='submit' value='Login'>
+    </form>
+</div>
+
+<h2>Don't have an account? <a href="/register">Register now</a></h2>
