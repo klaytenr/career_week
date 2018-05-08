@@ -14,8 +14,21 @@ class ApplicationController < ActionController::Base
   private
 
   def check_log_in
-    unless session[:user_id]
+    if session[:user_id]
+      if session[:code]
+        if session[:code] != Code.last().content
+          print session[:code]
+          print 'session'
+          print Code.last()
+          print 'code'
+          redirect_to "/code"
+        end
+      else 
+        redirect_to '/code'
+      end 
+    else
       redirect_to "/"
-    end 
+    end
   end 
+
 end

@@ -1,0 +1,13 @@
+<div id='access'>
+    <% if @user.level == 9 %>
+        <h3>Code: <%= @code.content %></h3>
+        <h3>Created On: <%= @time %></h3>
+        <button><a href='/dashboard'>Go to Dashboard</a></button>
+    <% else %>
+        <form action="/check_in" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            Code: <input type="text" name="code"> <br>
+            <input type='submit' value='Enter Code'>
+        </form>
+    <% end %>
+</div>
