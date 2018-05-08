@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get 'register' => 'users#register'
   post 'create' => 'users#create'
   
+  get 'code' => 'users#code'
+  get 'code_generate' => 'users#code_generate'
+
   get 'logout' => 'users#logout'
   
   get 'dashboard' => 'users#dashboard'
@@ -21,8 +24,10 @@ Rails.application.routes.draw do
   get 'check_in' => 'users#attendance'
   post 'check_in' => 'users#check_in'
 
-  delete ':user_id' => 'users#destroy_one'
-  delete 'all' => 'users#destroy_all'
+  delete 'delete/user/:user_id' => 'users#destroy_one_user'
+  delete 'delete/post/:post_id' => 'users#destroy_one_post'
+  delete 'delete/users/all' => 'users#destroy_all_users'
+  delete 'delete/posts/all' => 'users#destroy_all_posts'
 
   root 'users#login'
   # The priority is based upon order of creation: first created -> highest priority.

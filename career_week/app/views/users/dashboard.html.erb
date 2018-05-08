@@ -1,1 +1,24 @@
-<%= @user.first_name %>
+<h1>Dashboard</h1>
+<div id='access'>
+    <% if @user.level == 9 %>
+        <h3>Code: <%= @code.content %></h3>
+        <h3>Created On: <%= @time %></h3>
+        <button><a href='code_generate'>Generate a new code</a></button>
+    <% end %>
+</div>
+<div>
+    <% for post in @posts %>
+        <h4><%= post.content %></h4>
+        <h6>Written on <%= post.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%A %b %e At %l:%M %p") %></h6>
+        <% if @user.level == 9 %>
+            <button><a href='/delete/post/<%= post.id %>' data-method="delete">Delete</a></button>
+        <% end %>
+    <% end %>
+</div>
+<% if @user.level == 9 %> 
+    <form action="/post" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        Content: <input type="text" name="content"> <br>
+        <input type='submit' value='Write Post'>
+    </form>
+<% end %>
